@@ -20,7 +20,7 @@ const Navbar = ({auth,logout}) => {
         <a data-cy="navbar-home-link">Logo</a>
       </div>
       <div className={style.subnav}>
-        <div data-cy="navbar-cart-items-count">Cart:{arr.length}</div>
+        <div data-cy="navbar-cart-items-count">Cart:{auth?arr.length:0}</div>
         <button data-cy="navbar-login-logout-button" onClick={()=>logout()}>{auth?"Logout":"Login"}</button>
       </div>
     </div>
