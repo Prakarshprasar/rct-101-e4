@@ -1,0 +1,12 @@
+.nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    align-items: center;
+}
+.subnav{
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    
+}

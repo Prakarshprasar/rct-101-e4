@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import style from "./navbar.module.css"
+import axios from "axios"
+import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({auth,logout}) => {
+  const [arr, setarr] = useState([]);
+  useEffect(()=>{
+    const getData=async()=>{
+      let r= await axios.get("http://localhost:8080/cartItems")
+      setarr(r.data)
+    }
+    getData()
+    
+  },[])
   return (
-    <div data-cy="navbar">
+    <div data-cy="navbar" className={style.nav}>
       <div>
         {/* TODO: Use Link instead of anchor tag. */}
-        <a data-cy="navbar-home-link"></a>
+        <a data-cy="navbar-home-link">Logo</a>
       </div>
-      <div>
-        <div data-cy="navbar-cart-items-count"></div>
-        <button data-cy="navbar-login-logout-button"></button>
+      <div className={style.subnav}>
+        <div data-cy="navbar-cart-items-count">Cart:{arr.length}</div>
+        <button data-cy="navbar-login-logout-button" onClick={()=>logout()}>{auth?"Logout":"Login"}</button>
       </div>
     </div>
   );
